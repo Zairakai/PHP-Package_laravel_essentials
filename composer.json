@@ -39,10 +39,10 @@
         }
     ],
     "require": {
-        "php": "^8.3",
-        "illuminate/collections": "^11.0 || ^12.0",
-        "illuminate/support": "^11.0 || ^12.0",
-        "laravel/framework": "^11.0 || ^12.0",
+        "php": "^8.4",
+        "illuminate/collections": "^12.0 || ^13.0",
+        "illuminate/support": "^12.0 || ^13.0",
+        "laravel/framework": "^12.0 || ^13.0",
         "spatie/laravel-collection-macros": "^7.0 || ^8.0"
     },
     "require-dev": {
@@ -51,7 +51,7 @@
         "larastan/larastan": "^3.9",
         "laravel/pint": "^1.27",
         "nunomaduro/phpinsights": "^2.13",
-        "orchestra/testbench": "^9.0 || ^10.0",
+        "orchestra/testbench": "^10.0 || ^11.0",
         "phpmetrics/phpmetrics": "^2.9",
         "phpstan/phpstan": "^2.1",
         "phpunit/phpunit": "^12.0",
@@ -90,7 +90,7 @@
         },
         "optimize-autoloader": true,
         "platform": {
-            "php": "8.3"
+            "php": "8.4"
         },
         "preferred-install": "dist",
         "sort-packages": true
