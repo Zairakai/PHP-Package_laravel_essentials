@@ -91,6 +91,10 @@ make test           # phpunit / pest
 
 ---
 
+## Statistics
+
+![Statistics of laravel-essentials][stats-card]
+
 ## Contributing
 
 Contributions are welcome. Please read [CONTRIBUTING.md][contributing] for the project-specific workflow and quality standards.
@@ -135,3 +139,4 @@ Contributions are welcome. Please read [CONTRIBUTING.md][contributing] for the p
 [contributing]: ./CONTRIBUTING.md
 [docs]: https://laravel-essentials-cfbccf.gitlab.io
 [docs-badge]: https://img.shields.io/badge/docs-online-blue
+[stats-card]: https://gitlab.com/zairakai/gitlab-profile/-/raw/main/assets/projects/laravel-essentials.svg
