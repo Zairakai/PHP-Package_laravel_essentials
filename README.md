@@ -6,6 +6,7 @@
 
 [![GitLab Release][gitlab-release-badge]][gitlab-release]
 [![Packagist][packagist-badge]][packagist]
+[![Docs][docs-badge]][docs]
 [![Downloads][downloads-badge]][packagist]
 [![License][license-badge]][license]
 
@@ -15,6 +16,8 @@
 [![Code Style][pint-badge]][pint]
 
 Essential Laravel helpers and Str macros with zero duplication and practical defaults.
+
+**Documentation: [laravel-essentials-cfbccf.gitlab.io][docs]**
 
 ---
 
@@ -130,3 +133,5 @@ Contributions are welcome. Please read [CONTRIBUTING.md][contributing] for the p
 [pint]: https://laravel.com/docs/pint
 [ecosystem]: https://gitlab.com/zairakai
 [contributing]: ./CONTRIBUTING.md
+[docs]: https://laravel-essentials-cfbccf.gitlab.io
+[docs-badge]: https://img.shields.io/badge/docs-online-blue
