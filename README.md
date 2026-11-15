@@ -1,4 +1,8 @@
-# zairakai/laravel-essentials
+<p align="center">
+  <img src="https://gitlab.com/zairakai/php-packages/laravel-essentials/-/raw/main/assets/icon.png" alt="Laravel Essentials" width="160">
+</p>
+
+# Laravel Essentials
 
 [![Main][pipeline-main-badge]][pipeline-main-link]
 [![Develop][pipeline-develop-badge]][pipeline-develop-link]
@@ -17,24 +21,24 @@
 
 Essential Laravel helpers and Str macros with zero duplication and practical defaults.
 
-**Documentation: [laravel-essentials-cfbccf.gitlab.io][docs]**
-
----
+**Documentation: [laravel-essentials-cfbccf.gitlab.io][docs]** (this guide, and the reference of every function, read from the source).
 
 ## Features
 
-- **Boolean helpers** — `is_true()`, `is_false()`
-- **Math helpers** — `is_even()`, `is_odd()`
-- **String helpers** — `generate_random_string()`
-- **Format helpers** — `number_format_locale()`
-- **Filesystem helpers** — `sanitize_filename()`
-- **Validation helpers** — `is_valid_email()`, `is_valid_ip()`, `is_valid_mac()`, `is_valid_base64()`
-- **Array helpers** — `recursive_array_replace()`
-- **Str macros** — `Str::isEmail()`, `Str::isIp()`, `Str::isMac()`, `Str::isBase64()`
-- **Stringable macros** — `Str::of(...)->isEmail()` and equivalents
-- **Auto-loaded** — helpers and macros registered automatically via the service provider
+- **Boolean helpers**: `is_true()`, `is_false()`
+- **Math helpers**: `is_even()`, `is_odd()`
+- **String helpers**: `generate_random_string()`
+- **Format helpers**: `number_format_locale()`
+- **Filesystem helpers**: `sanitize_filename()`
+- **Validation helpers**: `is_valid_email()`, `is_valid_ip()`, `is_valid_mac()`, `is_valid_base64()`
+- **Array helpers**: `recursive_array_replace()`
+- **Str macros**: `Str::isEmail()`, `Str::isIp()`, `Str::isMac()`, `Str::isBase64()`
+- **Stringable macros**: `Str::of(...)->isEmail()` and equivalents
+- **Auto-loaded**: helpers and macros are registered by the service provider
 
----
+## Requirements
+
+PHP 8.4 or higher and Laravel 12 or 13.
 
 ## Install
 
@@ -42,11 +46,12 @@ Essential Laravel helpers and Str macros with zero duplication and practical def
 composer require zairakai/laravel-essentials
 ```
 
-No additional configuration needed — helpers are available globally after install.
-
----
+No additional configuration is needed: the helpers are available globally after the install.
 
 ## Usage
+
+<details>
+<summary>Examples of every helper and macro</summary>
 
 ```php
 // Boolean helpers
@@ -79,27 +84,22 @@ Str::isMac('00:1A:2B:3C:4D:5E');     // true
 Str::isBase64('dGVzdA==');           // true
 ```
 
----
+</details>
 
 ## Development
 
-```bash
-make quality        # pint + phpstan + rector + insights + markdownlint + shellcheck
-make quality-fast   # pint + phpstan + markdownlint
-make test           # phpunit / pest
-```
+See [CONTRIBUTING.md][contributing] for the workflow and the quality standards. `composer install` and `make install-hooks` set the package up.
 
----
+```bash
+make quality        # Pint, PHPStan and Markdownlint (with the rest of the gate)
+make quality-fast   # Pint, PHPStan and Markdownlint
+make quality-fix    # every automatic fix
+make test           # PHPUnit
+```
 
 ## Statistics
 
 ![Statistics of laravel-essentials][stats-card]
-
-## Contributing
-
-Contributions are welcome. Please read [CONTRIBUTING.md][contributing] for the project-specific workflow and quality standards.
-
----
 
 ## Getting Help
 

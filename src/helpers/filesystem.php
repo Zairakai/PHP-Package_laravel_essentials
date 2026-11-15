@@ -8,8 +8,14 @@ if (! function_exists('sanitize_filename')) {
      */
     function sanitize_filename(string $filename): string
     {
-        $filename = preg_replace('/[^a-zA-Z0-9_\-.]/', '', $filename) ?? '';
+        $filename = preg_replace(
+            '/[^a-zA-Z0-9_\-.]/',
+            '',
+            $filename,
+        ) ?? '';
 
-        return '' === $filename ? 'file' : $filename;
+        return '' === $filename
+            ? 'file'
+            : $filename;
     }
 }

@@ -17,18 +17,33 @@ if (! function_exists('recursive_array_replace')) {
         bool $inKeys = false,
     ): array|string {
         if (is_string($data)) {
-            return $inKeys ? $data : str_replace($find, $replace, $data);
+            return $inKeys
+                ? $data
+                : str_replace(
+                    $find,
+                    $replace,
+                    $data,
+                );
         }
 
         $result = [];
 
         foreach ($data as $key => $value) {
             $newKey = $inKeys && is_string($key)
-                ? str_replace($find, $replace, $key)
+                ? str_replace(
+                    $find,
+                    $replace,
+                    $key,
+                )
                 : $key;
 
             $result[$newKey] = is_array($value) || is_string($value)
-                ? recursive_array_replace($find, $replace, $value, $inKeys)
+                ? recursive_array_replace(
+                    $find,
+                    $replace,
+                    $value,
+                    $inKeys,
+                )
                 : $value;
         }
 
