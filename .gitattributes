@@ -23,6 +23,7 @@
 # The package ships src/ and composer.json. The development files and the tooling stay in the repository.
 
 # Folders
+/assets export-ignore
 /config export-ignore
 /docs export-ignore
 /tests export-ignore

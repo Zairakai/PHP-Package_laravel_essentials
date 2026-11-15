@@ -302,6 +302,7 @@ final class RepositoryStructureTest extends TestCase
             '/.gitlab-ci.yml',
             '/.markdownlint.json',
             '/SECURITY.md',
+            '/assets',
             '/docs',
             '/tests',
             '/phpstan.neon',
