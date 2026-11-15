@@ -97,10 +97,10 @@ teardown() {
   [ "$status" -eq 0 ]
 }
 
-@test "php version is 8.3 or higher" {
-  run php -r "echo PHP_MAJOR_VERSION . '.' . PHP_MINOR_VERSION;"
+@test "php version is 8.4 or higher" {
+  run php -r "echo PHP_VERSION_ID >= 80400 ? 'yes' : 'no';"
 
-  [[ "$output" =~ ^8\.(3|4|5) ]] || [[ "$output" =~ ^9\. ]]
+  [ "$output" = "yes" ]
 }
 
 @test "phpunit binary is available via vendor" {

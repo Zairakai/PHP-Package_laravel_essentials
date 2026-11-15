@@ -37,8 +37,8 @@ teardown() {
   [ "$status" -eq 0 ]
 }
 
-@test "composer.json requires php ^8.3 or ^8.4" {
-  run grep -q '"php":' "${PROJECT_ROOT}/composer.json"
+@test "composer.json requires php ^8.4" {
+  run grep -F '"php": "^8.4"' "${PROJECT_ROOT}/composer.json"
 
   [ "$status" -eq 0 ]
 }
