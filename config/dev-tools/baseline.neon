@@ -1,2 +1,7 @@
 parameters:
-	ignoreErrors: []
+  ignoreErrors:
+    -
+      message: '#^Call to an undefined static method Illuminate\\Support\\Str\:\:(isBase64|isEmail|isIp|isMac)\(\)\.$#'
+      identifier: staticMethod.notFound
+      count: 9
+      path: ../../tests/Unit/StrMacrosTest.php
