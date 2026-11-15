@@ -1,143 +1,155 @@
 {
-    "name": "zairakai/laravel-essentials",
-    "description": "Essential Laravel helpers and Str macros with zero duplication and practical defaults",
-    "license": "MIT",
-    "type": "library",
-    "keywords": [
-        "laravel",
-        "helpers",
-        "str",
-        "stringable",
-        "macros",
-        "validation",
-        "formatting",
-        "utilities",
-        "zairakai"
-    ],
-    "authors": [
-        {
-            "name": "Stanislas Poisson",
-            "email": "stanislas.p@the-white-rabbits.fr",
-            "homepage": "https://gitlab.com/zairakai",
-            "role": "Maintainer"
-        }
-    ],
-    "homepage": "https://gitlab.com/zairakai/php-packages/laravel-essentials",
-    "support": {
-        "issues": "https://gitlab.com/zairakai/php-packages/laravel-essentials/-/issues",
-        "source": "https://gitlab.com/zairakai/php-packages/laravel-essentials",
-        "docs": "https://gitlab.com/zairakai/php-packages/laravel-essentials/-/blob/main/README.md"
-    },
-    "funding": [
-        {
-            "type": "patreon",
-            "url": "https://www.patreon.com/c/zairakai"
-        },
-        {
-            "type": "other",
-            "url": "https://www.twitch.tv/zairakai"
-        }
-    ],
-    "require": {
-        "php": "^8.4",
-        "illuminate/collections": "^12.0 || ^13.0",
-        "illuminate/support": "^12.0 || ^13.0",
-        "laravel/framework": "^12.0 || ^13.42",
-        "spatie/laravel-collection-macros": "^7.0 || ^8.1"
-    },
-    "require-dev": {
-        "ergebnis/composer-normalize": "^2.57.0",
-        "orchestra/testbench": "^10.0 || ^11.3",
-        "phpunit/phpunit": "^12.5.44",
-        "zairakai/laravel-dev-tools": "^4.13.0"
-    },
-    "suggest": {
-        "ergebnis/composer-normalize": "Automated composer.json normalization"
-    },
-    "minimum-stability": "stable",
-    "prefer-stable": true,
-    "autoload": {
-        "psr-4": {
-            "Zairakai\\LaravelEssentials\\": "src/"
-        },
-        "files": [
-            "src/helpers/array.php",
-            "src/helpers/boolean.php",
-            "src/helpers/filesystem.php",
-            "src/helpers/format.php",
-            "src/helpers/math.php",
-            "src/helpers/string.php",
-            "src/helpers/validation.php"
-        ]
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Zairakai\\LaravelEssentials\\Tests\\": "tests/"
-        }
-    },
-    "config": {
-        "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true,
-            "ergebnis/composer-normalize": true,
-            "zairakai/laravel-dev-tools": true
-        },
-        "optimize-autoloader": true,
-        "platform": {
-            "php": "8.4"
-        },
-        "preferred-install": "dist",
-        "sort-packages": true
-    },
-    "extra": {
-        "authors": [
-            {
-                "email": [
-                    "stanislas.p@the-white-rabbits.fr"
-                ],
-                "name": "Stanislas Poisson",
-                "notes": "Primary maintainer",
-                "social": {
-                    "github": "https://github.com/Stanislas-Poisson",
-                    "gitlab": "https://gitlab.com/zairakai",
-                    "linkedin": "https://www.linkedin.com/in/stanislasp/",
-                    "stanislas-poisson": "https://the-white-rabbits.fr",
-                    "the-white-rabbits": "https://the-white-rabbits.fr",
-                    "twitch": "https://twitch.tv/zairakai"
-                }
-            }
-        ],
-        "laravel": {
-            "providers": [
-                "Zairakai\\LaravelEssentials\\EssentialsServiceProvider"
-            ]
-        }
-    },
-    "scripts": {
-        "post-install-cmd": [
-            "@setup-dev-tools"
-        ],
-        "post-update-cmd": [
-            "@setup-dev-tools"
-        ],
-        "analyse": "bash vendor/zairakai/laravel-dev-tools/scripts/phpstan.sh",
-        "analyse:baseline": "GENERATE_BASELINE=true bash vendor/zairakai/laravel-dev-tools/scripts/phpstan.sh",
-        "cs": "bash vendor/zairakai/laravel-dev-tools/scripts/cs-check.sh",
-        "cs-fix": "bash vendor/zairakai/laravel-dev-tools/scripts/cs-fix.sh",
-        "cs:fix": "bash vendor/zairakai/laravel-dev-tools/scripts/cs-fix.sh",
-        "insights": "bash vendor/zairakai/laravel-dev-tools/scripts/insights.sh",
-        "insights:fix": "bash vendor/zairakai/laravel-dev-tools/scripts/insights.sh --fix",
-        "markdown": "bash vendor/zairakai/laravel-dev-tools/scripts/markdownlint.sh",
-        "markdown:fix": "bash vendor/zairakai/laravel-dev-tools/scripts/markdownlint.sh --fix",
-        "phpmetrics": "bash vendor/zairakai/laravel-dev-tools/scripts/phpmetrics.sh",
-        "quality": "bash vendor/zairakai/laravel-dev-tools/scripts/ci-quality.sh",
-        "quality-fast": "bash vendor/zairakai/laravel-dev-tools/scripts/ci-quality.sh",
-        "quality:fast": "make quality-fast",
-        "quality:fix": "make quality-fix",
-        "rector": "bash vendor/zairakai/laravel-dev-tools/scripts/rector-check.sh",
-        "rector:fix": "bash vendor/zairakai/laravel-dev-tools/scripts/rector-fix.sh",
-        "setup-dev-tools": "bash vendor/zairakai/laravel-dev-tools/scripts/setup-package.sh --silent",
-        "test": "bash vendor/zairakai/laravel-dev-tools/scripts/test.sh",
-        "test:coverage": "COVERAGE=true bash vendor/zairakai/laravel-dev-tools/scripts/test.sh",
-        "test:unit": "TESTSUITE=Unit bash vendor/zairakai/laravel-dev-tools/scripts/test.sh"
+  "name": "zairakai/laravel-essentials",
+  "description": "Essential Laravel helpers and Str macros with zero duplication and practical defaults",
+  "license": "MIT",
+  "type": "library",
+  "keywords": [
+    "laravel",
+    "helpers",
+    "str",
+    "stringable",
+    "macros",
+    "validation",
+    "formatting",
+    "utilities",
+    "zairakai"
+  ],
+  "authors": [
+    {
+      "name": "Stanislas Poisson",
+      "email": "stanislas.p@the-white-rabbits.fr",
+      "homepage": "https://gitlab.com/zairakai",
+      "role": "Maintainer"
     }
+  ],
+  "homepage": "https://gitlab.com/zairakai/php-packages/laravel-essentials",
+  "support": {
+    "issues": "https://gitlab.com/zairakai/php-packages/laravel-essentials/-/issues",
+    "source": "https://gitlab.com/zairakai/php-packages/laravel-essentials",
+    "docs": "https://gitlab.com/zairakai/php-packages/laravel-essentials/-/blob/main/README.md",
+    "security": "https://gitlab.com/zairakai/php-packages/laravel-essentials/-/blob/main/SECURITY.md"
+  },
+  "funding": [
+    {
+      "type": "patreon",
+      "url": "https://www.patreon.com/c/zairakai"
+    },
+    {
+      "type": "other",
+      "url": "https://www.twitch.tv/zairakai"
+    }
+  ],
+  "require": {
+    "php": "^8.4",
+    "illuminate/collections": "^12.0 || ^13.0",
+    "illuminate/support": "^12.0 || ^13.0",
+    "laravel/framework": "^12.0 || ^13.42",
+    "spatie/laravel-collection-macros": "^7.0 || ^8.1"
+  },
+  "require-dev": {
+    "ergebnis/composer-normalize": "^2.57.0",
+    "orchestra/testbench": "^10.0 || ^11.3",
+    "phpunit/phpunit": "^12.5.44",
+    "zairakai/laravel-dev-tools": "^5.1"
+  },
+  "suggest": {
+    "ergebnis/composer-normalize": "Automated composer.json normalization"
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true,
+  "autoload": {
+    "psr-4": {
+      "Zairakai\\LaravelEssentials\\": "src/"
+    },
+    "files": [
+      "src/helpers/array.php",
+      "src/helpers/boolean.php",
+      "src/helpers/filesystem.php",
+      "src/helpers/format.php",
+      "src/helpers/math.php",
+      "src/helpers/string.php",
+      "src/helpers/validation.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Zairakai\\LaravelEssentials\\Tests\\": "tests/"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "ergebnis/composer-normalize": true,
+      "zairakai/laravel-dev-tools": true
+    },
+    "audit": {
+      "ignore-severity": [
+        "low",
+        "medium"
+      ]
+    },
+    "optimize-autoloader": true,
+    "platform": {
+      "php": "8.4.0"
+    },
+    "preferred-install": "dist",
+    "process-timeout": 0,
+    "sort-packages": true
+  },
+  "extra": {
+    "authors": [
+      {
+        "email": [
+          "stanislas.p@the-white-rabbits.fr"
+        ],
+        "name": "Stanislas Poisson",
+        "notes": "Primary maintainer",
+        "social": {
+          "github": "https://github.com/Stanislas-Poisson",
+          "gitlab": "https://gitlab.com/zairakai",
+          "linkedin": "https://www.linkedin.com/in/stanislasp/",
+          "stanislas-poisson": "https://the-white-rabbits.fr",
+          "the-white-rabbits": "https://the-white-rabbits.fr",
+          "twitch": "https://twitch.tv/zairakai"
+        }
+      }
+    ],
+    "laravel": {
+      "providers": [
+        "Zairakai\\LaravelEssentials\\EssentialsServiceProvider"
+      ]
+    }
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "@setup-dev-tools"
+    ],
+    "post-update-cmd": [
+      "@setup-dev-tools"
+    ],
+    "analyse": "bash vendor/zairakai/laravel-dev-tools/scripts/phpstan.sh",
+    "analyse:baseline": "GENERATE_BASELINE=true bash vendor/zairakai/laravel-dev-tools/scripts/phpstan.sh",
+    "cs": "bash vendor/zairakai/laravel-dev-tools/scripts/cs-check.sh",
+    "cs-fix": "@cs:fix",
+    "cs:fix": "bash vendor/zairakai/laravel-dev-tools/scripts/cs-fix.sh",
+    "doctor": "bash vendor/zairakai/laravel-dev-tools/scripts/doctor.sh",
+    "insights": "bash vendor/zairakai/laravel-dev-tools/scripts/insights.sh",
+    "markdown": "bash vendor/zairakai/laravel-dev-tools/scripts/markdownlint.sh",
+    "markdown:fix": "bash vendor/zairakai/laravel-dev-tools/scripts/markdownlint.sh --fix",
+    "phpmetrics": "bash vendor/zairakai/laravel-dev-tools/scripts/phpmetrics.sh",
+    "quality": "make quality",
+    "quality-fast": "@quality:fast",
+    "quality-fix": "@quality:fix",
+    "quality:fast": "make quality-fast",
+    "quality:fix": "make quality-fix",
+    "rector": "bash vendor/zairakai/laravel-dev-tools/scripts/rector-check.sh",
+    "rector-fix": "@rector:fix",
+    "rector:fix": "bash vendor/zairakai/laravel-dev-tools/scripts/rector-fix.sh",
+    "setup-dev-tools": "bash vendor/zairakai/laravel-dev-tools/scripts/setup-package.sh",
+    "spread-fix": "@spread:fix",
+    "spread:fix": "bash vendor/zairakai/laravel-dev-tools/scripts/spread-fix.sh",
+    "test": "bash vendor/zairakai/laravel-dev-tools/scripts/test.sh",
+    "test:coverage": "COVERAGE=true bash vendor/zairakai/laravel-dev-tools/scripts/test.sh",
+    "test:unit": "TESTSUITE=Unit bash vendor/zairakai/laravel-dev-tools/scripts/test.sh"
+  }
 }

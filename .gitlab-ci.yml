@@ -2,7 +2,7 @@
 # GITLAB CI/CD PIPELINE
 # ================================
 # Pipeline généré par zairakai/laravel-dev-tools.
-# Hérite du template complet — seules les variables propres à ce projet
+# Hérite du template complet : seules les variables propres à ce projet
 # sont définies ici.
 #
 # Pour mettre à jour le template après composer update :
@@ -11,7 +11,7 @@
 
 include:
   - project: 'zairakai/php-packages/laravel-dev-tools'
-    ref: 4.13.0
+    ref: 5.1.0
     file: '.gitlab/ci/pipeline-php-package.yml'
 
 variables:

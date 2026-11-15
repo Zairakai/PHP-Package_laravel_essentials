@@ -12,6 +12,11 @@ if (! function_exists('number_format_locale')) {
         string $decimalSeparator = ',',
         string $thousandsSeparator = ' ',
     ): string {
-        return number_format((float) $number, $decimals, $decimalSeparator, $thousandsSeparator);
+        return number_format(
+            (float) $number,
+            $decimals,
+            $decimalSeparator,
+            $thousandsSeparator,
+        );
     }
 }

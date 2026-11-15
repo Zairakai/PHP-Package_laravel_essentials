@@ -1,6 +1,6 @@
 # Security Policy
 
-> This project follows the [Zairakai Global Security Policy][handbook-security].
+> This project follows the [Zairakai Global Security Policy][handbook-security].  
 > Please refer to it for standard protections, response timeline, and contact information.
 
 ---
@@ -24,6 +24,7 @@ Please **do not disclose vulnerabilities publicly** until they have been reviewe
 | Layer | Security Protection |
 | :--- | :--- |
 | **Static Analysis** | PHPStan Level Max compliance and Rector modernizations. |
+| **Git Hooks** | Quality checks before each commit and push, with the hooks of `laravel-dev-tools`. |
 | **CI Pipeline** | Automated secret detection in GitLab CI. |
 
 ---
@@ -36,7 +37,7 @@ Please **do not disclose vulnerabilities publicly** until they have been reviewe
 - no dynamic code execution (`eval`, `exec`, shell calls)
 - no persistent storage access
 
-Validation helpers (`is_valid_*`) validate formats only — they do not replace
+Validation helpers (`is_valid_*`) validate formats only: they do not replace
 full Laravel validation and output escaping.
 
 ---

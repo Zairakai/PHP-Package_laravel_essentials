@@ -6,7 +6,7 @@
 #   /next/       main
 #   /versions.json   what the version selector lists
 #
-# GitLab Pages has one site per project and deploys only from the default branch, so this runs there and
+# GitLab Pages has one site per project, so this runs in the pipeline of a release tag (after the publication) and
 # rebuilds the versions from their tags: nothing has to be kept between two runs.
 set -euo pipefail
 
@@ -79,8 +79,9 @@ done
 for tag in "${versions[@]}"; do
   echo "== documentation of $tag"
   mkdir -p "$work/$tag"
+  # Not git archive: it leaves out the docs, which .gitattributes marks with export-ignore.
   # shellcheck disable=SC2086
-  git archive "$tag" $archive_paths | tar -x -C "$work/$tag"
+  bash docs/scripts/export-tree.sh "$tag" "$work/$tag" $archive_paths
 
   # What built it: the tag, and this pipeline.
   export CI_COMMIT_REF_NAME="$tag"
