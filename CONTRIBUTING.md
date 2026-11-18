@@ -40,7 +40,14 @@
 | `make pint-fix` | Pint | Fix code style automatically. |
 | `make quality-fix` | All | Apply every automatic fix (Markdown, Rector, layout, Pint). |
 | `make test` | PHPUnit | Run unit tests. |
+| `make test-ci` | PHPUnit | Run the tests with the coverage and the junit report (`build/logs/`). |
+| `make bats` | Bats | Run the structure tests of the repository. |
+| `make ci` | All | The whole gate: quality, tests and Bats. |
 | `make markdownlint` | Markdownlint | Validate Markdown documentation. |
+| `make config-check` | laravel-dev-tools | Check that every configuration file is where its tool reads it. |
+| `make setup-check` | laravel-dev-tools | Tell which published files are late on the package (`make setup-update` publishes them again). |
+
+The configuration of each tool is in `config/dev-tools/`: edit it there, never at the root.
 
 ---
 

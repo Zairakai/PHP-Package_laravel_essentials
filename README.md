@@ -95,7 +95,12 @@ make quality        # Pint, PHPStan and Markdownlint (with the rest of the gate)
 make quality-fast   # Pint, PHPStan and Markdownlint
 make quality-fix    # every automatic fix
 make test           # PHPUnit
+make test-ci        # PHPUnit with the coverage and the junit report (build/logs)
+make bats           # the structure tests of the repository
+make ci             # the whole gate: quality, tests and Bats
 ```
+
+The configuration of each tool is in `config/dev-tools/`, one file per setting (PHPStan, Pint, PHPUnit, Rector, PHPInsights). The root holds only the thin `.markdownlint.json` and the `.markdownlintignore`. These files come from [laravel-dev-tools][dev-tools]: `make setup-check` tells which ones are late on the package (`make setup-update` publishes them again), and `make config-check` that no file sits where its tool does not read it.
 
 ## Statistics
 
@@ -137,6 +142,7 @@ make test           # PHPUnit
 [pint]: https://laravel.com/docs/pint
 [ecosystem]: https://gitlab.com/zairakai
 [contributing]: ./CONTRIBUTING.md
+[dev-tools]: https://gitlab.com/zairakai/php-packages/laravel-dev-tools
 [docs]: https://laravel-essentials-cfbccf.gitlab.io
 [docs-badge]: https://img.shields.io/badge/docs-online-blue
 [stats-card]: https://gitlab.com/zairakai/gitlab-profile/-/raw/main/assets/projects/laravel-essentials.svg
