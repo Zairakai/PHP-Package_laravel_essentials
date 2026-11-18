@@ -45,6 +45,16 @@ final class HelpersTest extends TestCase
         ));
     }
 
+    #[Test]
+    public function it_generates_a_mixed_string_by_default_and_for_an_unknown_type(): void
+    {
+        // The default alphabet has no "l": it is the one that is mistaken for a "1" or an "I"
+        self::assertSame(25, strlen(generate_random_string()));
+        self::assertMatchesRegularExpression('/^[a-km-zA-Z0-9]+$/', generate_random_string(200));
+        self::assertMatchesRegularExpression('/^[a-km-zA-Z0-9]+$/', generate_random_string(200, 'UNKNOWN'));
+        self::assertSame('', generate_random_string(0));
+    }
+
     // String helpers
 
     #[Test]

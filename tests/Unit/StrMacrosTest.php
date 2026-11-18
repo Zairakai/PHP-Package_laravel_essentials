@@ -5,11 +5,22 @@ declare(strict_types=1);
 namespace Zairakai\LaravelEssentials\Tests\Unit;
 
 use Illuminate\Support\Str;
+use Illuminate\Support\Stringable;
 use PHPUnit\Framework\Attributes\Test;
 use Zairakai\LaravelEssentials\Tests\TestCase;
 
 final class StrMacrosTest extends TestCase
 {
+    #[Test]
+    public function it_only_adds_what_laravel_does_not_have(): void
+    {
+        // A native method wins over a macro: when Laravel adds one of these, the macro is dead code and the README is wrong
+        foreach (['isEmail', 'isIp', 'isMac', 'isBase64'] as $name) {
+            self::assertFalse(method_exists(Str::class, $name), 'Str::' . $name . '() exists in Laravel now');
+            self::assertFalse(method_exists(Stringable::class, $name), 'Stringable::' . $name . '() exists in Laravel now');
+        }
+    }
+
     #[Test]
     public function it_registers_all_string_macros(): void
     {
@@ -17,6 +28,14 @@ final class StrMacrosTest extends TestCase
         self::assertTrue(Str::hasMacro('isIp'));
         self::assertTrue(Str::hasMacro('isMac'));
         self::assertTrue(Str::hasMacro('isBase64'));
+    }
+
+    #[Test]
+    public function it_registers_every_macro_on_stringable_too(): void
+    {
+        foreach (['isEmail', 'isIp', 'isMac', 'isBase64'] as $name) {
+            self::assertTrue(Stringable::hasMacro($name), $name);
+        }
     }
 
     #[Test]
