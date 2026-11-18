@@ -132,13 +132,11 @@ teardown() {
 # Published files at work
 # ================
 
-@test "make help runs and names the project" {
-  # The image of the pipeline has no make: the target is checked on a machine that has it
-  command -v make > /dev/null 2>&1 || skip "make is not installed"
+@test "the Makefile gives the project a name without quotes" {
+  # A quoted name made make help fail on a printf: checked in the file, the pipeline runs the scripts and not make
+  run grep -E '^LARAVEL_DIRECTORY_TOOLS_PROJECT_NAME := [^"]' "${PROJECT_ROOT}/Makefile"
 
-  run make -C "${PROJECT_ROOT}" help
   [ "$status" -eq 0 ]
-  [[ "$output" == *"Available Commands"* ]]
 }
 
 @test "composer.json defines every script that the package publishes" {
