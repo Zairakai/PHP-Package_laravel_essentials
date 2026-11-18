@@ -125,6 +125,47 @@ teardown() {
   assert_file_contains "${PROJECT_ROOT}/Makefile" "include"
 }
 
-@test "phpstan.neon includes a config source" {
-  assert_file_contains "${PROJECT_ROOT}/phpstan.neon" "includes"
+@test "config/dev-tools/phpstan.neon includes a config source" {
+  assert_file_contains "${PROJECT_ROOT}/config/dev-tools/phpstan.neon" "includes"
+}
+
+# Published files at work
+# ================
+
+@test "the Makefile gives the project a name without quotes" {
+  # A quoted name made make help fail on a printf: checked in the file, the pipeline runs the scripts and not make
+  run grep -E '^LARAVEL_DIRECTORY_TOOLS_PROJECT_NAME := [^"]' "${PROJECT_ROOT}/Makefile"
+
+  [ "$status" -eq 0 ]
+}
+
+@test "composer.json defines every script that the package publishes" {
+  run php -r '
+    $published = json_decode(file_get_contents($argv[1]), true);
+    $own = json_decode(file_get_contents($argv[2]), true)["scripts"] ?? [];
+    $missing = array_diff(array_keys($published), array_keys($own));
+    echo implode(", ", $missing);
+    exit($missing === [] ? 0 : 1);
+  ' "${PROJECT_ROOT}/vendor/zairakai/laravel-dev-tools/stubs/composer-scripts.json" "${PROJECT_ROOT}/composer.json"
+  [ "$status" -eq 0 ]
+}
+
+@test "config-check finds every file where its tool reads it" {
+  run bash "${PROJECT_ROOT}/vendor/zairakai/laravel-dev-tools/scripts/check-config-copies.sh"
+
+  [ "$status" -eq 0 ]
+}
+
+@test ".gitlab-ci.yml follows the installed version of laravel-dev-tools" {
+  local version
+  version="$(php -r '
+    $lock = json_decode(file_get_contents($argv[1]), true);
+    foreach (array_merge($lock["packages"], $lock["packages-dev"]) as $package) {
+      if ($package["name"] === "zairakai/laravel-dev-tools") {
+        echo $package["version"];
+      }
+    }
+  ' "${PROJECT_ROOT}/composer.lock")"
+  [ -n "$version" ]
+  assert_file_contains "${PROJECT_ROOT}/.gitlab-ci.yml" "ref: ${version}"
 }
