@@ -125,6 +125,46 @@ teardown() {
   assert_file_contains "${PROJECT_ROOT}/Makefile" "include"
 }
 
-@test "phpstan.neon includes a config source" {
-  assert_file_contains "${PROJECT_ROOT}/phpstan.neon" "includes"
+@test "config/dev-tools/phpstan.neon includes a config source" {
+  assert_file_contains "${PROJECT_ROOT}/config/dev-tools/phpstan.neon" "includes"
+}
+
+# Published files at work
+# ================
+
+@test "make help runs and names the project" {
+  run make -C "${PROJECT_ROOT}" help
+  [ "$status" -eq 0 ]
+  [[ "$output" == *"Available Commands"* ]]
+}
+
+@test "composer.json defines every script that the package publishes" {
+  run php -r '
+    $published = json_decode(file_get_contents($argv[1]), true);
+    $own = json_decode(file_get_contents($argv[2]), true)["scripts"] ?? [];
+    $missing = array_diff(array_keys($published), array_keys($own));
+    echo implode(", ", $missing);
+    exit($missing === [] ? 0 : 1);
+  ' "${PROJECT_ROOT}/vendor/zairakai/laravel-dev-tools/stubs/composer-scripts.json" "${PROJECT_ROOT}/composer.json"
+  [ "$status" -eq 0 ]
+}
+
+@test "make config-check finds every file where its tool reads it" {
+  run make -C "${PROJECT_ROOT}" config-check
+
+  [ "$status" -eq 0 ]
+}
+
+@test ".gitlab-ci.yml follows the installed version of laravel-dev-tools" {
+  local version
+  version="$(php -r '
+    $lock = json_decode(file_get_contents($argv[1]), true);
+    foreach (array_merge($lock["packages"], $lock["packages-dev"]) as $package) {
+      if ($package["name"] === "zairakai/laravel-dev-tools") {
+        echo $package["version"];
+      }
+    }
+  ' "${PROJECT_ROOT}/composer.lock")"
+  [ -n "$version" ]
+  assert_file_contains "${PROJECT_ROOT}/.gitlab-ci.yml" "ref: ${version}"
 }

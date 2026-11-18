@@ -35,9 +35,6 @@ final class RepositoryStructureTest extends TestCase
             'README.md',
             'SECURITY.md',
             'composer.json',
-            'phpstan.neon',
-            'phpunit.xml',
-            'pint.json',
         ] as $file) {
             yield $file => [
                 $file,
@@ -164,7 +161,6 @@ final class RepositoryStructureTest extends TestCase
             'pint.json',
             'rector.php',
             '.markdownlint.json',
-            '.markdownlintignore',
         ] as $file) {
             self::assertFileExists($this->root('config/dev-tools/' . $file));
         }
@@ -246,13 +242,22 @@ final class RepositoryStructureTest extends TestCase
     }
 
     #[Test]
+    public function it_keeps_one_file_only_for_what_no_editor_reads_or_what_the_tool_reads_from_the_root(): void
+    {
+        foreach (['phpunit.xml', 'phpstan.neon', 'pint.json'] as $file) {
+            self::assertFileDoesNotExist($this->root($file), $file . ': no extension of an editor reads it, config/dev-tools/ only');
+        }
+
+        self::assertFileDoesNotExist($this->root('config/dev-tools/.markdownlintignore'), 'the ignore file is the one of the root');
+    }
+
+    #[Test]
     public function it_keeps_the_baseline_of_the_project_in_phpstan(): void
     {
         $phpstan = (string) file_get_contents($this->root('config/dev-tools/phpstan.neon'));
 
         self::assertStringContainsString('baseline.neon', $phpstan);
         self::assertFileExists($this->root('config/dev-tools/baseline.neon'));
-        self::assertStringContainsString('config/dev-tools/phpstan.neon', (string) file_get_contents($this->root('phpstan.neon')));
     }
 
     #[Test]
@@ -305,8 +310,6 @@ final class RepositoryStructureTest extends TestCase
             '/assets',
             '/docs',
             '/tests',
-            '/phpstan.neon',
-            '/pint.json',
         ] as $entry) {
             self::assertStringContainsString($entry . ' export-ignore', $attributes);
         }

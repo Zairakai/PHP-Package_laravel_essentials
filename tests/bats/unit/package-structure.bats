@@ -173,8 +173,9 @@ teardown() {
   assert_file_exists "${PROJECT_ROOT}/Makefile"
 }
 
-@test "phpstan.neon exists" {
-  assert_file_exists "${PROJECT_ROOT}/phpstan.neon"
+@test "phpstan.neon is in config/dev-tools only" {
+  assert_file_exists "${PROJECT_ROOT}/config/dev-tools/phpstan.neon"
+  [ ! -e "${PROJECT_ROOT}/phpstan.neon" ]
 }
 
 @test "config/dev-tools/ directory exists" {
@@ -187,8 +188,15 @@ teardown() {
 
 @test "config/dev-tools/ holds the configuration of each tool" {
   local file
-  for file in phpinsights.php phpstan.neon phpunit.xml pint.json rector.php .markdownlint.json .markdownlintignore; do
+  for file in phpinsights.php phpstan.neon phpunit.xml pint.json rector.php .markdownlint.json; do
     assert_file_exists "${PROJECT_ROOT}/config/dev-tools/${file}"
+  done
+}
+
+@test "config/dev-tools/phpunit.xml writes the junit log and the coverage reports" {
+  local element
+  for element in 'build/logs/junit.xml' 'build/logs/clover.xml' 'build/logs/cobertura.xml' 'build/coverage'; do
+    assert_file_contains "${PROJECT_ROOT}/config/dev-tools/phpunit.xml" "${element}"
   done
 }
 
@@ -197,13 +205,17 @@ teardown() {
   [ "$status" -eq 0 ]
 }
 
-@test "the root holds only what the editor reads: thin files and copies" {
+@test "the root holds only what the editor or the tool reads: the thin file and the ignore file" {
   local file
-  for file in phpstan.neon .markdownlint.json pint.json phpunit.xml .markdownlintignore; do
+  for file in .markdownlint.json .markdownlintignore; do
     assert_file_exists "${PROJECT_ROOT}/${file}"
   done
   [ ! -e "${PROJECT_ROOT}/rector.php" ]
   [ ! -e "${PROJECT_ROOT}/phpinsights.php" ]
+  [ ! -e "${PROJECT_ROOT}/phpunit.xml" ]
+  [ ! -e "${PROJECT_ROOT}/phpstan.neon" ]
+  [ ! -e "${PROJECT_ROOT}/pint.json" ]
+  [ ! -e "${PROJECT_ROOT}/config/dev-tools/.markdownlintignore" ]
 }
 
 @test "the logo and the banner of the package are in assets/" {
