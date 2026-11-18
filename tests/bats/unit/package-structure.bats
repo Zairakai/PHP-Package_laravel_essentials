@@ -226,6 +226,9 @@ teardown() {
 }
 
 @test "the git hooks of laravel-dev-tools are active" {
+  # The hooks are a setting of the clone of a developer: a checkout of the pipeline has none
+  [ -z "${CI:-}" ] || skip "the hooks are a local setting"
+
   run git -C "${PROJECT_ROOT}" config core.hooksPath
   [ "$status" -eq 0 ]
   [ "$output" = "vendor/zairakai/laravel-dev-tools/stubs/githooks" ]
